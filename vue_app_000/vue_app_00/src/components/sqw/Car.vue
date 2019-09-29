@@ -15,9 +15,9 @@
 				<td>经典100%</td>
 				<td>¥218.00</td>
 				<td>
-					<button>-</button>
-					<span>1</span>
-					<button>+</button>
+					<button  @click="red">-</button>
+					<span>{{getCount}}</span>
+					<button  @click="add">+</button>
 				</td>
 				<td>¥218.00</td>
 			</tr>
@@ -25,9 +25,9 @@
 				<td>缤纷圣果</td>
 				<td>¥308.00</td>
 				<td>
-					<button>-</button>
-					<span>1</span>
-					<button>+</button>
+					<button @click="reds">-</button>
+					<span>{{getCount2}}</span>
+					<button @click="adds">+</button>
 				</td>
 				<td>¥308.00</td>
 			</tr>
@@ -40,8 +40,8 @@
 		</tfoot>
 	</table>
        <div class="btns">
-           <mt-button class="btn">继续购物</mt-button>
-           <mt-button class="btn">去结算</mt-button>
+           <mt-button class="btn1">继续购物</mt-button>
+           <mt-button class="btn2">去结算</mt-button>
        </div>
     </div>
 </template>
@@ -53,7 +53,34 @@ export default {
             
         }
     },
-    
+    computed:{
+		getCount(){
+			//  return this.$store.state.count
+			 return this.$store.getters.getState;
+		},
+		getCount2(){
+			// return  this.$store.state.count2
+			 return this.$store.getters.getS;
+		}
+	},
+	methods: {
+		red(){
+			// this.$store.commit('reduce')
+			 this.$store.dispatch('reduce')
+		},
+		add(){
+			// this.$store.commit('increment')
+			 this.$store.dispatch('increment')
+		},
+		reds(){
+			// this.$store.commit('reduces')
+			 this.$store.dispatch('reduces')
+		},
+		adds(){
+			// this.$store.commit('increments')
+			 this.$store.dispatch('increments')
+		}
+	},
 }
 </script>
 <style scoped>
@@ -73,9 +100,14 @@ table{
         display:flex;
         justify-content: space-between;
     }
-    .btn{
+    .btn1{
+        background:#000;
+        width:49%;
+        color:#fff;
+    }
+	 .btn2{
         background:#E4004F;
-        width:100px;
+        width:49%;
         color:#fff;
     }
 </style>

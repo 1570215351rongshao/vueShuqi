@@ -12,7 +12,7 @@
             <div class="dic">
             <div class="dictionary_title">{{item.dname}}</div>
             <span>{{item.detail}}</span>
-            <div class="dictionary_price">￥{{item.price}}</div>
+            <div class="dictionary_price">{{item.price | my-filter}}</div>
             </div>
         </div>
     </div>

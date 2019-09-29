@@ -11,7 +11,7 @@
               <span>1</span>
               <button>+</button>
           </nav>
-          <div class="d1">价格：<a>￥{{item.price}}</a></div>
+          <div class="d1">价格：<a>￥{{item.price | my-filter}}</a></div>
           <div class="d2">规格:
               <button>20cm</button>
               <button>25cm</button>
@@ -69,7 +69,7 @@ export default {
 </script>
 <style scoped>
 .first-top{
-    margin-top:50px; 
+    margin-top:60px; 
     padding:10px;
     }
 .first-top>img{

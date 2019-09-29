@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store/index'
 //引入第三方组件库 mint-ui  
 //1.完整引入mint ui 组件库中所有组件
 import MintUI from "mint-ui"
@@ -23,6 +24,14 @@ import { Swipe, SwipeItem } from 'mint-ui';
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 
+//注册 过滤全局组件 价格前加一个￥符号
+Vue.filter('my-filter',function(val){
+  if(typeof val==='number'){
+  return "￥"+val
+  }else{
+      return val
+  }
+})
 //以下是脚部组件导入注册
 import { Tabbar, TabItem } from 'mint-ui';
 Vue.component(Tabbar.name, Tabbar);
@@ -46,6 +55,9 @@ axios.defaults.withCredentials=true
 //由于axios不支持use将实力添加到vue的原型上
 Vue.prototype.axios=axios;
 
+//路由懒加载
+import { Lazyload } from 'mint-ui';
+Vue.use(Lazyload);
 
 Vue.config.productionTip = false
 //5: 设置请求的根路径 
@@ -60,5 +72,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

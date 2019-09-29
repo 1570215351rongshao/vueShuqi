@@ -1,11 +1,9 @@
 <template>
     <div>
          <div class="lunbo_top">
-           <Carous></Carous>
+         <Carous></Carous>
         </div>
-        <div>
-            <p>分类</p>
-        </div>
+        <div></div>
         <div class="dictionary_parent" v-for="(item,i) of list" :key="i">
             <!-- <img :src="`http://127.0.0.1:3000/${item.pic_url}`" > -->
             <img src="../../../../vue_server_00/public/dictionary/16.jpg">
@@ -19,7 +17,10 @@
 </template>
 
 <script>
+import Carous from './Carous.vue'
 export default {
+    name:'Bigcake',
+    components:{Carous},
     data(){
         return{
             list:[]
@@ -61,7 +62,7 @@ export default {
         padding:0 10px;
     }
     .dictionary_parent>img{
-        
+        width:30%;
         height:100px;
     }
     .dictionary_title{

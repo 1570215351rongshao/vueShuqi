@@ -29,9 +29,9 @@
     <div class="product_parent">
         <div v-for="(item,i) of list" :key="i" >
            <router-link tag="div" class="product_dictionary" :to="{name:'Cake1',params:{id:item.id}}">
-           <img :src="`http://127.0.0.1:3000/${item.pic_url}`" >
+           <img  v-lazy="`http://127.0.0.1:3000/${item.pic_url}`" >
            <span>{{item.dname}}</span>
-           <div>￥{{item.price}}</div>
+           <div>{{item.price | my-filter}}</div>
            </router-link>
         </div>
     </div>

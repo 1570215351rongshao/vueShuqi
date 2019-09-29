@@ -7,11 +7,11 @@
         </div>
         <div class="dictionary_parent" v-for="(item,i) of list" :key="i">
             <!-- <img :src="`http://127.0.0.1:3000/${item.pic_url}`" > -->
-                        <img src="../../../../vue_server_00/public/dictionary/15.jpg">
+            <img src="../../../../vue_server_00/public/dictionary/15.jpg">
             <div class="dic">
             <div class="dictionary_title">{{item.dname}}</div>
             <span>{{item.detail}}</span>
-            <div class="dictionary_price">￥{{item.price}}</div>
+            <div class="dictionary_price">{{item.price | my-filter}}</div>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@ export default {
         padding:0 10px;
     }
     .dictionary_parent>img{
-       
+       width:30%;
         height:100px;
     }
     .dictionary_title{

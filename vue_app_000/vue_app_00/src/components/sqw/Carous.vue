@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="coures">
     <mt-swipe :auto="4000">
       <mt-swipe-item>
           <img src="../../../../vue_server_00/public/product/c1.jpg">
@@ -26,6 +26,9 @@ export default {
 }
 </script>
 <style scoped>
+.coures{
+  margin-top:50px;
+}
 div{
     width:100%;
     height:200px;

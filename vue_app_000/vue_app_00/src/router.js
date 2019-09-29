@@ -65,8 +65,11 @@ export default new Router({
     {path:'/Chocolate',component:Chocolate},
     {path:'/Cheese',component:Cheese},
     {path:'/Mousse',component:Mousse},
-    {path:'/Bigcake',component:Bigcake},
-    {path:'/Bigcake',component:Bigcake},
+    { 
+      path:'/Bigcake', 
+      name:'Bigcake',
+      component:Bigcake
+    },
     {path:'/French',component:French},
     {
       path:'/Cake1/id',

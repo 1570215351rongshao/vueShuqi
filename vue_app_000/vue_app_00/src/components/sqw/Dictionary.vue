@@ -9,7 +9,7 @@
 
       <!-- tab-container -->
       <mt-tab-container v-model="selected">
-        <mt-tab-container-item id="1">
+        <mt-tab-container-item class="one" id="1">
           <router-link to="/Cheese"><p>天然奶油蛋糕</p></router-link>
           <router-link to="/Files"><p>法式蛋糕</p></router-link>
           <router-link to="/French"><p>乳酪蛋糕</p></router-link>
@@ -17,11 +17,11 @@
           <router-link to="/Chocolate"><p>巧克力蛋糕</p></router-link>
           <router-link to="/Bigcake"><p>大型庆典蛋糕</p></router-link>
         </mt-tab-container-item>
-        <mt-tab-container-item id="2">
-           <router-link to="/Cheese"><p>天然奶油口味</p></router-link>
-            <router-link to="/French"><p>乳酪口味</p></router-link>
-             <router-link to="/Mousse"><p>水果蛋糕</p></router-link>
-              <router-link to="/Chocolate"><p>巧克力风味</p></router-link>
+        <mt-tab-container-item class="one" id="2">
+          <router-link to="/Cheese"><p>天然奶油口味</p></router-link>
+          <router-link to="/French"><p>乳酪口味</p></router-link>
+          <router-link to="/Mousse"><p>水果蛋糕</p></router-link>
+          <router-link to="/Chocolate"><p>巧克力风味</p></router-link>
         </mt-tab-container-item>
         <mt-tab-container-item id="3">
 
@@ -30,11 +30,11 @@
     </div>
     <div v-for="(item,i) of list" :key="i">
       <router-link tag="div" class="dictionary_parent" :to="{name:'Cake2',params:{id:item.id}}">
-      <img :src="`http://127.0.0.1:3000/${item.pic_url}`" />
+      <img  v-lazy="`http://127.0.0.1:3000/${item.pic_url}`" />
       <div class="dic">
         <div class="dictionary_title">{{item.dname}}</div>
         <span>{{item.detail}}</span>
-        <div class="dictionary_price">￥{{item.price}}</div>
+        <div class="dictionary_price">{{item.price | my-filter}}</div>
       </div>
       </router-link>
     </div>
@@ -67,6 +67,13 @@ export default {
 </script>
 
 <style scoped>
+a{
+text-decoration: none;
+color:#000;
+}
+.one{
+  background:rgba(225,225,225,0.4);
+}
 .dictionary_parent {
   width: 100%;
   border: 1px solid #ccc;
@@ -80,8 +87,9 @@ export default {
 .dic {
   padding: 0 10px;
 }
-.dictionary_parent > img {
-  width:100px;
+
+.dictionary_parent > img[data-v-f05ddbee] {
+  width:30%;
   height: 100px;
 }
 .dictionary_title {
