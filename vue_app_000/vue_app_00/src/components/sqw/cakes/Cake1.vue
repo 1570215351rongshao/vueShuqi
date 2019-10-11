@@ -18,7 +18,7 @@
           </div>
           <div class="b1">
                <mt-button>立即购买</mt-button>
-               <router-link tag="mt-button" to="/Car">加入购物车</router-link>
+               <mt-button @click="addCart" :data-id="item.id" :data-dname="item.dname" :data-price="item.price">加入购物车</mt-button>
           </div>
       <div class="p3">
           <p>蛋糕类别：天然奶油</p>
@@ -42,6 +42,25 @@ export default {
             cakesInfo:[]
         }
     },
+    methods: {
+        addCart(e){
+            //console.log(1)
+            var id=e.target.dataset.id;
+            var dname=e.target.dataset.dname;
+            var price=e.target.dataset.price;
+            //console.log(id+"-"+dname+"-"+price)
+             this.axios.get("addCart",{params:{id,price,dname}}).then(res=>{
+               // console.log(res); //params保存参数对象 .then异步结束后
+                if(res.data.code==-1){
+                    this.$toast("请登录")
+                    /*vue中从一个组件跳转到另一个组件*/
+                    this.$router.push("/Login_s");
+                }else{
+                  this.$toast("添加成功")
+                }
+            });
+        }
+    },
      created(){
           //console.log(this.$route.params)
           //获取路由参数
@@ -52,7 +71,7 @@ export default {
           //相应数据渲染到页面上
           this.axios.get(url).then(res=>{
               this.cakesInfo.push(res.data[0]);  
-              //console.log(res)
+             // console.log(res)
           }).catch(err=>{
               //console.log(err)
           })

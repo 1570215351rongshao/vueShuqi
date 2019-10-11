@@ -43,12 +43,10 @@ server.get("/login",(req,res)=>{
     //.1获取网页传递的两个数据 phone upwd
     //参数方式一：?phone=tom&upwd="123"查询字符串
     var phone=req.query.phone;
-   
     var upwd=req.query.upwd;
-   
     //2.sql:查询sq语句
     //数据库：库名  表名 列名  都是小写
-    var sql="SELECT id FROM sqw_user WHERE phone=? AND upwd=md5(?)";
+    var sql="SELECT id FROM sqw_user WHERE phone=? AND upwd=?";
     //console.log(upwd)
     //3.json:{code:1,msg:"登陆成功"}
     pool.query(sql,[phone,upwd],(err,result)=>{
@@ -97,6 +95,111 @@ server.post("/reg",(req,res)=>{
 
 });
 
+//req.session.uid=result[0].id; 
+//############# 将制定的商品加入购物车########################
+ server.get("/addcart",(req,res)=>{
+     //参数
+     var uid=req.session.uid;
+     //console.log(uid)
+     if(!uid){
+         res.send({code:-1,msg:"请登录"});
+         return;
+     }
+     var id=req.query.id;
+     var price=req.query.price;
+     var dname=req.query.dname;
+      //console.log(id)
+      //console.log(price)
+     //console.log(dname)
+     //查询指定用户是否购买过此商品
+  var sql="select id from shopping where uid=? and id=?";
+  //console.log(1)
+  pool.query (sql,[uid,id],(err,result)=>{
+      //console.log(uid)
+      //console.log(id)
+    if(err)throw err;
+    //console.log(2)
+     var sql=""
+     if(result.length==0){
+        // console.log(3)
+        // console.log(result.length)
+  //没有买过 就添加
+         sql=`INSERT INTO shopping(id,uid,dname,price,count)VALUES(${id},${uid},'${dname}',${price},1)`;
+         //sql=`INSERT INTO shopping(id,uid,dname,price,count)VALUES(1,1,'草莓蛋糕%100',288,1)`;
+        // console.log("没有买过")
+     }else{
+          //购买过  更新
+         sql=`UPDATE shopping SET count=count+1 WHERE uid=${uid} AND id=${id}`;
+        // console.log("买过加1")
+     }
+     //console.log("以下是执行")
+ pool.query(sql,(err,result)=>{
+    if(err)throw err;
+     //console.log(result)
+     //console.log("添加")
+     res.send({code:1,msg:"添加成功"})
+ })
+  //返回json
+     })
+ })
+ //购物车数量的接口
+ server.get("/Count",(req,res)=>{
+     var sql=`UPDATE shopping SET count=1 WHERE uid=${uid} AND id=${id}`;
+     pool.query(sql,(err,result)=>{
+         if(err)throw err;
+         res.send({code:1,msg:"修改成功"})
+     })
+ })
+ // //http://127.0.0.1:3000/addcart
+
+// //http://127.0.0.1:3000/addcart?id=1&price=49&dname=phone
+
+// //http://127.0.0.1:3000/login?phone=18404963260&upwd=123456
+// //功能四：查询当前用户的购物车信息
+ server.get("/cart",(req,res)=>{
+     //2.获取uid 并且判断如果没有请求登录
+       var uid=req.session.uid;
+        if(!uid){
+             res.send({code:-1,msg:"请登录"});
+            return;
+         }
+     //3.创建sql查询用户购物车内容
+     var sql="SELECT id,did,dname,price,count FROM shopping WHERE uid=?";
+     //4.获取并返回结果并且发送客户端
+    pool.query(sql,[uid],(err,result)=>{
+        if(err) throw err;
+                res.send({code:1,msg:"查询成功",data:result});
+     })
+     });
+//     //功能五：删除
+ server.get("/delete",(req,res)=>{
+     //获取参数 id
+     var id=req.query.id;
+     var sql="DELETE FROM shopping WHERE id=?";
+     pool.query(sql,[id],(err,result)=>{
+         if(err)throw err;
+         if(result.affectedRows>0){
+             res.send({code:1,msg:"删除成功"})
+         }else{
+             res.send({code:-1,msg:"删除失败"})
+         }
+     })
+ });
+ //删除所有的商品
+ server.get("/del",(req,res)=>{
+    var ids=req.query.ids;
+    // sql 删除购物车中的多个id
+    var sql=`DELETE FROM shopping WHERE id IN(${ids})`;
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        //如果影响的行数大于0，表示执行成功否则失败
+        if(result.affectedRows>0){
+            res.send({code:1,msg:"删除成功"})
+        }else{
+            res.send({code:-1,msg:"删除失败"})
+        }
+    })
+})
 //功能三 首页商品 价格 名称
 server.get("/product",(req,res)=>{
     var sql="select distinct p.pic_size,p.pic_url,p.id,d.* from danggao d left join picter p on d.id=p.did where p.pic_size='md' group by d.id";
@@ -104,8 +207,8 @@ server.get("/product",(req,res)=>{
        // console.log(price)
         if(err)throw err;
         res.send(result)
-    })
-});
+     })
+ });
 //功能四 首页商品的图片
 server.get("/picter",(req,res)=>{
     var sql='select distinct p.pic_size,p.pic_url,p.id,d.* from danggao d left join picter p on d.id=p.did where p.pic_size="md" group by d.id';

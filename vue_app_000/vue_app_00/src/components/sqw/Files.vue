@@ -4,7 +4,6 @@
            <Carous></Carous>
         </div>
         <div>
-            <p>分类</p>
         </div>
         <div class="dictionary_parent" v-for="(item,i) of list" :key="i">
             <!-- <img :src="`http://127.0.0.1:3000/${item.pic_url}`" > -->

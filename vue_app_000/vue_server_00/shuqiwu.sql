@@ -47,6 +47,7 @@ CREATE TABLE dictionary(
 # 陆、购物车列表
 CREATE TABLE shopping(
     id INT PRIMARY KEY AUTO_INCREMENT,
+    uid INT,
     userId VARCHAR(20),     #购物车id
     did INT,                # did蛋糕id（图片所属蛋糕）
     dname VARCHAR(50),        #蛋糕名称
@@ -301,8 +302,8 @@ insert into dictionary values(null,"巧克力风味蛋糕","");
 insert into dictionary values(null,"大型庆典蛋糕","");
 
 # 六、插入用户列表
-insert into sqw_user values(null,"12345678912",md5("123456"),"天津市","");
-insert into sqw_user values(null,"18404963260",md5("123456"),"北京市","");
+insert into sqw_user values(null,"12345678912","123456","天津市","");
+insert into sqw_user values(null,"18404963260","123456","北京市","");
 
 
 

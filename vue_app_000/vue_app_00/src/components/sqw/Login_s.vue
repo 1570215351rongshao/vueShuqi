@@ -30,7 +30,7 @@ export default {
             this.$router.push('Reg_s')
             console.log(1)
         },
-                login(){
+        login(){
             //完成用户登录的操作
             //3.创建一个正则表达式验证密码
             var reg=/^[0-9A-Za-z]{3,12}$/i;
@@ -59,8 +59,8 @@ export default {
                 
             }else{
                
-                      this.$toast("登录成功")
-                 this.$router.push("/Product_s")//将Product这个路由推入路由器，路由自动跳转
+                this.$toast("登录成功")
+                this.$router.push("/Product_s")//将Product这个路由推入路由器，路由自动跳转
               
             }
             })
