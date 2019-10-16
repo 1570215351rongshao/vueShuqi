@@ -1,7 +1,8 @@
 <template>
     <div class="first-top">
-         <img src="../../../../../vue_server_00/public/jingdian/lg-2.jpg">
+         <!-- <img src="../../../../../vue_server_00/public/jingdian/lg-2.jpg"> -->
       <div class="first" v-for="(item,j) of cakesInfo" :key="j"> 
+          <img class="image_img" v-lazy="`http://127.0.0.1:3000/${item.pic_url}`">
           <p class="p1">{{item.dname}}</p>
           <span class="sp1">{{item.detail}}</span>
           <nav class="na">
@@ -64,14 +65,15 @@ export default {
      created(){
           //console.log(this.$route.params)
           //获取路由参数
-          var id=this.$route.params
-          //console.log(id)
+          var id=this.$route.params;
+         //console.log(id)
           //拼接后台url发送请求
           var url='cake';
           //相应数据渲染到页面上
-          this.axios.get(url).then(res=>{
-              this.cakesInfo.push(res.data[0]);  
-             // console.log(res)
+          this.axios.get(url,{params:{id}}).then(res=>{
+              //this.cakesInfo.push(res.data[0]);  
+               this.cakesInfo=res.data;
+              //console.log(res.data)s
           }).catch(err=>{
               //console.log(err)
           })
@@ -102,6 +104,10 @@ export default {
 }
 </script>
 <style scoped>
+.image_img{
+    width:355px;
+    height:355px;
+}
 .first-top{
     margin-top:50px; 
     padding:10px;
@@ -159,7 +165,7 @@ margin-left:5px;
     font-size: 0.8rem;
 }
 .img1 img{
-    width:100%;
+    width:355px;
 }
 </style>
            

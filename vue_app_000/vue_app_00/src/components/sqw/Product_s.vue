@@ -4,8 +4,10 @@
     <!-- 以下是 生日蛋糕 提货卡 面包外卖 全国快递 -->
     <div class="product_title">
         <div>
-            <img src="../../../../vue_server_00/public/product/1_01.png" alt="">
+            <router-link to="/Dictionary">
+                 <img src="../../../../vue_server_00/public/product/1_01.png" alt="">
             <span>蛋糕分类</span>
+            </router-link>
         </div>
          <div>
             <img src="../../../../vue_server_00/public/product/1_02.png" alt="">
@@ -65,6 +67,10 @@ export default {
 </script>
 
 <style scoped>
+
+a{
+   text-decoration: none;
+}
     .product-all{
         width:100%;
     }
@@ -83,11 +89,12 @@ export default {
     }
     .product_title img{
         width:100%;
-        height:52px;
+        height:50%;
     }
     .product_title span{
         font-size:12px;
         color:#6E6E6E;
+         font-family: "微软雅黑";
     }
   
     /*以下是say的样式*/
@@ -135,6 +142,7 @@ export default {
     .product_dictionary>span{
         color:#6E6E6E;
         font-size: 12px;
+         font-family: "微软雅黑";
         margin-top:10px;
     }
     .product_dictionary>div{

@@ -6,6 +6,8 @@ const express=require("express");
 const mysql=require("mysql");
     //跨域配置
 const cors=require("cors");
+//解析post body的body-parser
+const bodyParser = require('body-parser');
     //session模块
 const session=require("express-session");
 //2.配置数据库连接池
@@ -24,12 +26,18 @@ server.use(cors({
     origin:["http://127.0.0.1:8080","http://localhost:8080"],
     credentials:true
 }));
+
 //4.配置session模块
  server.use(session({
     secret:"128位字符串",//安全字符串
     resave:true,            //请求时要更新数据
     saveUninitialized:true,
  }));
+ //解析post参数
+
+ server.use(bodyParser.json());
+//使用body-parser中间件
+server.use(bodyParser.urlencoded({extended:false}))
  //4.1配置项目的静态目录
  server.use(express.static("public"));
  //http://127.0.0.1:3000/01.jpg //测试图片有没有写进数据库
@@ -67,26 +75,34 @@ server.get("/login",(req,res)=>{
     })
 });
 
+//注册前查询此用户是否已经存在
+server.get("/reg_go", (req, res) => {
+    //console.log(1)
+    var phone = req.query.phone;
+    //console.log(2)
+   // console.log(phone)
+    var sql = "SELECT id FROM sqw_user WHERE 1=1 AND phone=?";
+    pool.query(sql, [phone], (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+            res.send({ code: -1, msg: "用户名已存在" })
+        } else {
+            res.send({ code: 1, msg: "用户名可用" })
+        }
+
+    })
+})
 //功能二 注册
-server.post("/reg",(req,res)=>{
-    //获取post请求的数据
-    var obj=req.body; //post提交的数据
-    //console.log(obj); //打印post提交的数据
-    //验证每一项的数据是否为空
-    if (!obj.phone )//如果用户名为空 也可用（obj.uname==='' ）
-    {
-        return;   //阻止往后执行
-    }
-    if (!obj.upwd)
-    {
-        return;   //阻止往后执行
-    }
+server.post("/reg", (req, res) => {
+    var obj=req.body;
+    //console.log(1)
+    //console.log(obj)
     //2.1.1在路由中执行sql语句
-    pool.query('INSERT INTO sqw_user SET ?',[obj],(err,result)=>{
+    var sql="insert into sqw_user (phone,upwd)values(?,?);"
+    pool.query(sql,[obj.phone,obj.upwd],(err,result)=>{
          if(err) throw err;
             //console.log(result);
             //判断是否插入成功
-    
         if(result.affectedRows>0){
             res.send({code:1,msg:'reg success'});
         }
@@ -94,6 +110,7 @@ server.post("/reg",(req,res)=>{
     });      //res.send('注册成功');//测试
 
 });
+
 
 //req.session.uid=result[0].id; 
 //############# 将制定的商品加入购物车########################
@@ -281,9 +298,15 @@ server.get("/french",(req,res)=>{
 })
 
 server.get("/cake",(req,res)=>{
-    var sql="select distinct p.pic_size,p.pic_url,p.id,d.* from danggao d left join picter p on d.id=p.did where p.pic_size='md' group by d.id";
+    var id = req.query.id;
+     id=JSON.parse(id)//JSON.parse将上面的id打印出的对象{"id":"1"}中的1拿出来
+     id=parseInt(id.id);//这加parseInt(id.id)为了防止报错，因为di.id是字符串
+    //console.log(id)
+    var sql=`select distinct p.pic_size,p.pic_url,p.id,d.* from danggao d left join picter p on d.id=p.did where p.pic_size='md' and d.id=${id} group by d.id`;
+    //console.log("sql")
     pool.query(sql,(err,result)=>{
         //console.log(result)
+        //console.log("打印result")
         if(err)throw err;
         res.send(result)
     })

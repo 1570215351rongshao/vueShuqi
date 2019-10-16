@@ -29,7 +29,7 @@
       </mt-tab-container>
     </div>
     <div v-for="(item,i) of list" :key="i">
-      <router-link tag="div" class="dictionary_parent" :to="{name:'Cake2',params:{id:item.id}}">
+      <router-link tag="div" class="dictionary_parent" :to="{name:'Cake1',params:{id:item.id}}">
       <img  v-lazy="`http://127.0.0.1:3000/${item.pic_url}`" />
       <div class="dic">
         <div class="dictionary_title">{{item.dname}}</div>
@@ -90,7 +90,7 @@ color:#000;
 
 .dictionary_parent > img[data-v-f05ddbee] {
   width:30%;
-  height: 100px;
+  height: 30%;
 }
 .dictionary_title {
   font-size: 14px;

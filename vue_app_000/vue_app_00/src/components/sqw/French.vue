@@ -31,7 +31,7 @@ export default {
             var url="french"
             this.axios.get(url).then(res=>{
                this.list=res.data
-               //console.log(res)
+               console.log(res)
             })
         }
     },

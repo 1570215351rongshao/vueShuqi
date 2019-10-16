@@ -60,7 +60,7 @@ export default {
     }
     .dictionary_parent>img{
        width:30%;
-        height:100px;
+        height:30%;
     }
     .dictionary_title{
         font-size:14px;

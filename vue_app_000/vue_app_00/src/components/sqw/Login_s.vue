@@ -8,8 +8,10 @@
             <a  href="javascript:;">忘记密码?</a>
         </div>
         <mt-button class="login_font"  size="large" @click="login">登录</mt-button>
-        <a class="register" href="javascript:;">没有账号? </a>
-        <label @click="regLogin">立即注册</label>
+        <div class="register">
+             <a>没有账号? </a>
+            <label @click="regLogin">立即注册</label>
+        </div>
         <div class="login_ti">温馨提示：成功注册会员，登录后首次完善个人信息，即可获赠官网会员20积分。</div>
         <div class="login_bottom">淑棋屋，选用全球优质原料，天然奶油蛋糕，使用进口天然稀奶油.</div>
         <div class="login_image"><img src="../../../../vue_server_00/public/product/msg@48x48.png" alt=""></div>
@@ -28,7 +30,7 @@ export default {
     methods:{
         regLogin(){
             this.$router.push('Reg_s')
-            console.log(1)
+            //console.log(1)
         },
         login(){
             //完成用户登录的操作
@@ -37,12 +39,12 @@ export default {
             //4.要求用户名：3-12位字母数字
             if(!reg.test(this.phone)){
                   //如果验证失败，提示短消息
-                this.$messagebox("用户名格式错误")
+                this.$messagebox("提示消息","用户名格式错误")
                 return;
             }
             if(!reg.test(this.upwd)){
                   //密码验证失败，提示短消息
-                this.$messagebox("密码格式错误")
+                this.$messagebox("提示消息","密码格式错误")
                 return;
             }
             //5.发送ajax请求 axios？
@@ -53,7 +55,7 @@ export default {
                  //6.获取服务器返回的结果
             if(res.data.code==-1){
                  // console.log(res.data.code)  
-                  this.$messagebox("登录失败")
+                  this.$messagebox("提示消息","登录失败")
                     //6.1登录失败 提示
                     //6.2登陆成功 跳转商品首页
                 
@@ -122,9 +124,14 @@ export default {
         margin-top:10px;
         }
    
-    .register{
-        display:inline-block;
-        padding:10px 5px;
+    .register {
+      padding-top:20px;
+    }
+    .register>a{
+        color:#000;
+    }
+    .register>label{
+        color:#E4004F;
     }
     .login_font{
         color:#fff;

@@ -55,7 +55,7 @@ export default {
 				 console.log(res)
                 //2.获取返回的结果
                 if(res.data.code==-1){
-                   this.$messagebox("请登录")
+                   this.$messagebox("提示消息","请登录")
                      //3.如果用户没有执行登录操作
                        //用交互提示登录 /跳转登录组件
                     this.$router.push("/Login_s"); 

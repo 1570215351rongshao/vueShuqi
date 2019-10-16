@@ -6,7 +6,7 @@
         <div>
         </div>
         <div class="dictionary_parent" v-for="(item,i) of list" :key="i">
-             <router-link tag="div" class="dictionary_parent" :to="{name:'Cake3',params:{id:item.id}}">
+             <router-link tag="div" class="dictionary_parent" :to="{name:'Cake1',params:{id:item.id}}">
             <img  v-lazy="`http://127.0.0.1:3000/${item.pic_url}`" >
             <div class="dic">
             <div class="dictionary_title">{{item.dname}}</div>
@@ -60,7 +60,7 @@ export default {
     }
     .dictionary_parent>img{
        width:30%;
-        height:100px;
+        height:30%;
     }
     .dictionary_title{
         font-size:14px;

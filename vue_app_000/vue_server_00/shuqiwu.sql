@@ -48,13 +48,10 @@ CREATE TABLE dictionary(
 CREATE TABLE shopping(
     id INT PRIMARY KEY AUTO_INCREMENT,
     uid INT,
-    userId VARCHAR(20),     #购物车id
     did INT,                # did蛋糕id（图片所属蛋糕）
     dname VARCHAR(50),        #蛋糕名称
     price  DECIMAL(10,2),   #蛋糕价格
-    nid INT,                #nid规格id
-    pid INT,                #pid图片的id
-    isDeleted INT, #  1（删除） 0(未删除) 默认值0
+    count INT,
     remark VARCHAR(50)                     
 );
 # 柒、用户列表

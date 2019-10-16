@@ -20,8 +20,7 @@ import French from "@/components/sqw/French.vue"
 import Car from "@/components/sqw/Car.vue"
 
 import Cake1 from "@/components/sqw/cakes/Cake1"
-import Cake2 from "@/components/sqw/cakes/Cake2"
-import Cake3 from "@/components/sqw/cakes/Cake3"
+
 
 
 
@@ -72,20 +71,10 @@ export default new Router({
     },
     {path:'/French',component:French},
     {
-      path:'/Cake1/id',
+      path:'/Cake1/:id',
       name:'Cake1',
       component:Cake1,
     },
-    {
-      path:'/Cake2',
-      name:'Cake2',
-      component:Cake2,
-    },
-    {
-      path:'/Cake3',
-      name:'Cake3',
-      component:Cake3,
-    }
 
 
   ]
