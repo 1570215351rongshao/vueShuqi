@@ -5,25 +5,25 @@
     <div class="product_title">
         <div>
             <router-link to="/Dictionary">
-                 <img src="../../../../vue_server_00/public/product/1_01.png" alt="">
+                 <img src="../../assets/1_01.png" alt="">
             <span>蛋糕分类</span>
             </router-link>
         </div>
          <div>
-            <img src="../../../../vue_server_00/public/product/1_02.png" alt="">
+            <img src="../../assets/1_02.png" alt="">
             <span>提货卡</span>
         </div>
          <div>
-            <img src="../../../../vue_server_00/public/product/1_03.png" alt="">
+            <img src="../../assets/1_03.png" alt="">
             <span>面包外卖</span>
         </div>
          <div>
-            <img src="../../../../vue_server_00/public/product/1_04.png" alt="">
+            <img src="../../assets/1_04.png" alt="">
             <span>全国快递</span>
         </div>
     </div>
     <div class="product_say">
-        <img src="../../../../vue_server_00/public/product/say.png" alt="">
+        <img src="../../assets/say.png" alt="">
         <span >生日蛋糕提前4个小时订购，祝福语仅限8个字左右</span>
     </div>
    
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import Carous from './Carous.vue'
 export default {
     name:'product',
     data(){

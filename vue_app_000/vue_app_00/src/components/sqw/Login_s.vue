@@ -14,7 +14,7 @@
         </div>
         <div class="login_ti">温馨提示：成功注册会员，登录后首次完善个人信息，即可获赠官网会员20积分。</div>
         <div class="login_bottom">淑棋屋，选用全球优质原料，天然奶油蛋糕，使用进口天然稀奶油.</div>
-        <div class="login_image"><img src="../../../../vue_server_00/public/product/msg@48x48.png" alt=""></div>
+        <div class="login_image"><img src="../../assets/msg@48x48.png" alt=""></div>
     </div>
 </template>
 

@@ -27,10 +27,10 @@
           <p>特色原料：{{item.stock}}</p>
       </div>
       <div class="img1">
-          <img src="../../../../../vue_server_00/public/jingdian/lg-3.jpg">
-          <img src="../../../../../vue_server_00/public/jingdian/lg-5.jpg">
-          <img src="../../../../../vue_server_00/public/jingdian/lg-6.jpg">
-          <img src="../../../../../vue_server_00/public/jingdian/20180719103.jpg">
+          <img src="../../../assets/lg-3.jpg">
+          <img src="../../../assets/lg-5.jpg">
+          <img src="../../../assets/lg-6.jpg">
+          <img src="../../../assets/20180719103.jpg">
       </div>
       </div>
     </div>

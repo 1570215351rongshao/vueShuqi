@@ -59,8 +59,8 @@ export default {
         padding:0 10px;
     }
     .dictionary_parent>img{
-        width:100px;
-        height:100px;
+        width:30%;
+        height:30%;
     }
     .dictionary_title{
         font-size:14px;

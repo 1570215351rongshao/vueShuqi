@@ -1,6 +1,6 @@
 <template>
     <div class="car">
-        <h4 style="color:#E4004F;background:#dedede;padding:8px;">我的购物车</h4>
+        <h4 style="color:#E4004F;background:#dedede;padding:10px;">我的购物车</h4>
 		<div>
 			<label>全选:</label><input type="checkbox"  @change="selectAll" v-model="checkAll"/>
 		</div>
@@ -20,10 +20,8 @@
 			<mt-button :data-id="item.id" @click="delItem" style="background:#E4004F; color:#fff;">删除</mt-button>
 		</div>
 		<!--  -->
-		<div>
-            <span>{{getCount}}</span>
-			<mt-button  @click="delMitem">删除选中的商品</mt-button>
-			<label>小计:</label><span></span>
+		<div class="delMitem">
+			<mt-button @click="delMitem">清空购物车</mt-button>
 		</div>
 					<!-- 
        <div class="btns">
@@ -227,6 +225,16 @@ export default {
 	 .btn2{
         background:#E4004F;
         width:49%;
+        color:#fff;
+    }
+    .delMitem{
+        position: fixed;
+        bottom:60px;
+        right:10px;
+    }
+    .delMitem>button{
+        text-align: center;
+        background:crimson;
         color:#fff;
     }
 </style>

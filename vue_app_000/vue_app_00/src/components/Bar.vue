@@ -1,20 +1,9 @@
 
 <template>
-  <div style="height:200px;margin-top:60px;">
-    <mt-swipe :auto="4000">
-      <mt-swipe-item>
-          <img src="../../../vue_server_00/public/product/c1.jpg">
-      </mt-swipe-item>
-      <mt-swipe-item>
-           <img src="../../../vue_server_00/public/product/c2.jpg">
-      </mt-swipe-item>
-      <mt-swipe-item>
-           <img src="../../../vue_server_00/public/product/plb-2.jpg">
-      </mt-swipe-item>
-      <mt-swipe-item>
-           <img src="../../../vue_server_00/public/product/plb-3.jpg">
-      </mt-swipe-item>
-    </mt-swipe> 
+  <div>
+    <div>
+        <Carous></Carous>
+    </div>
     <!-- 以下是列表项 -->
     <product></product>
   </div>
@@ -23,9 +12,10 @@
 
 
 <script>
-
+import Carous from './sqw/Carous.vue'
   export default {
     name: 'Bar',
+    components:{Carous},
     data () {
       return { 
       }

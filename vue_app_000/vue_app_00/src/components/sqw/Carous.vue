@@ -2,16 +2,16 @@
   <div class="coures">
     <mt-swipe :auto="4000">
       <mt-swipe-item>
-          <img src="../../../../vue_server_00/public/product/c1.jpg">
+          <img src="../../assets/c1.jpg">
       </mt-swipe-item>
       <mt-swipe-item>
-           <img src="../../../../vue_server_00/public/product/c2.jpg">
+           <img src="../../assets/c2.jpg">
       </mt-swipe-item>
       <mt-swipe-item>
-           <img src="../../../../vue_server_00/public/product/plb-2.jpg">
+           <img src="../../assets/plb-2.jpg">
       </mt-swipe-item>
       <mt-swipe-item>
-           <img src="../../../../vue_server_00/public/product/plb-3.jpg">
+           <img src="../../assets/plb-3.jpg">
       </mt-swipe-item>
     </mt-swipe> 
   </div>
